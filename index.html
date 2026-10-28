@@ -314,6 +314,7 @@ footer.site{border-top:1px solid var(--line);padding:40px 0 calc(40px + env(safe
   .unveil.pre.in img{clip-path:inset(0 0 0 0)}
 }
 @media (prefers-reduced-motion:reduce){.unveil.pre img{clip-path:none}}
+@media (prefers-reduced-motion:reduce){.reveal{transition:opacity .8s ease var(--d,0ms)}.reveal.pre{opacity:0}.reveal.pre.in{opacity:1}}
 </style>
 </head>
 <body>
@@ -682,7 +683,7 @@ footer.site{border-top:1px solid var(--line);padding:40px 0 calc(40px + env(safe
   document.querySelectorAll('.reveal').forEach(n => {
     const parent = n.parentElement; const i = groups.get(parent) || 0; groups.set(parent, i + 1);
     if (!n.style.getPropertyValue('--d')) n.style.setProperty('--d', Math.min(i, 4) * 70 + 'ms');
-    if (!reduce && n.getBoundingClientRect().top > fold) { n.classList.add('pre'); io.observe(n); }
+    if (n.getBoundingClientRect().top > fold) { n.classList.add('pre'); io.observe(n); }
   });
 
   /* tabs */
